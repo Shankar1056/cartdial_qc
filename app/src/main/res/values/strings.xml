@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">CartDial QC</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="authentication_message">Verification is under process, you will get notified once we approve.</string>
+    <string name="hint_orderid">Enter Order ID (Ex 254189)</string>
+    <string name="search">Search</string>
+    <string name="enterorder_id">Please enter your order ID to search</string>
+    <string name="Order_details">Order Details</string>
+    <string name="customername">Name: </string>
+    <string name="customereail">Email: </string>
+    <string name="address">Address: </string>
+    <string name="mobile">Contact Number: </string>
+    <string name="product_details">Product/Service Details: </string>
+    <string name="ordersource">Order Source: </string>
+    <string name="totalamount">Total Amount: </string>
+    <string name="paymentmethod">Payment Mode: </string>
+</resources>

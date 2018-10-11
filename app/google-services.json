@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "971542623212",
+    "firebase_url": "https://cartdialqc.firebaseio.com",
+    "project_id": "cartdialqc",
+    "storage_bucket": "cartdialqc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971542623212:android:4eb765cc87421d8d",
+        "android_client_info": {
+          "package_name": "apextechies.cartdialqc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "971542623212-ckr4btrcnj23s8d2vh51je2rkusm187h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "apextechies.cartdialqc",
+            "certificate_hash": "321bbf7ac25ec1b2fa18f142475fdaade22eff3e"
+          }
+        },
+        {
+          "client_id": "971542623212-drjmrdeg9ac2aio6jl279a72vuiv6qsi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbF9xBsq4FX1XiqRLi-Ym-MzEslT0fItA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "971542623212-drjmrdeg9ac2aio6jl279a72vuiv6qsi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
