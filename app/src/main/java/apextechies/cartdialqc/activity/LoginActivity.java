@@ -117,6 +117,7 @@ public class LoginActivity extends AppCompatActivity{
                                 }
                                 else {
                                     ClsGeneral.setPreferences(LoginActivity.this, ConstantValue.USERID, jsonObject.optString("id"));
+                                    ClsGeneral.setPreferences(LoginActivity.this, ConstantValue.APITOKEN, jsonObject.optString("api_token"));
 
                                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                     finish();

@@ -8,4 +8,6 @@ public class WebServices {
     public static final String LOGIN = BASEURL+"user_login";
     public static final String USERDETAILS_BYORDERID = DEZENTSBASEURL+"get_user_detals";
     public static final String PRODUCTDETAILS_BYORDERID = DEZENTSBASEURL+"get_product_detals";
+    public static final String GETQUESTION = BASEURL+"get_question";
+    public static final String INSERTUPDATE_QCSTATUS = BASEURL+"insert_qc_statue";
 }

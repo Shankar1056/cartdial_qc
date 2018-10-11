@@ -38,11 +38,10 @@ class ProductDetailsAdapter( private val myCartModels: ArrayList<ProductDetailsm
         val sa = myCartModels!![position]
 
         holder.productTV.text = sa.order_item_name
-        holder.priceTV.text = sa.product_price!![1].meta_value
-     /* for (i in 0 until sa.product_price!!.size){
+      for (i in 0 until sa.product_price!!.size){
           if (sa.product_price!![i].meta_key.equals("_line_total"))
-            holder.priceTV.text = sa.product_price!![i].meta_value
-       }*/
+              holder.priceTV.text = sa.product_price!![i].meta_value
+       }
     }
 
     override fun getItemCount(): Int {

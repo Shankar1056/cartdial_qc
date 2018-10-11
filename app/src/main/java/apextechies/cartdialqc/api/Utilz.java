@@ -52,12 +52,13 @@ public class Utilz {
         return mHttpClient;
     }
 
-    public static String executeHttpPost(String url, ArrayList<NameValuePair> postParameters) throws Exception {
+    public static String executeHttpPost(String url, ArrayList<NameValuePair> postParameters, String api_token) throws Exception {
         BufferedReader in = null;
         try {
             HttpClient client = getHttpClient();
             HttpPost request = new HttpPost(url);
             request.addHeader("x-api-key", WebServices.XAPIKEY);
+            request.addHeader("api_token", api_token);
             UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(
                     postParameters);
             request.setEntity(formEntity);
@@ -87,12 +88,14 @@ public class Utilz {
     }
 
 
-    public static String executeHttpGet(String url) throws Exception {
+    public static String executeHttpGet(String url, String api_token) throws Exception {
         BufferedReader in = null;
         try {
             HttpClient client = getHttpClient();
             HttpGet request = new HttpGet();
             request.setURI(new URI(url));
+            request.addHeader("x-api-key", WebServices.XAPIKEY);
+            request.addHeader("api_token", api_token);
             HttpResponse response = client.execute(request);
             in = new BufferedReader(new InputStreamReader(response.getEntity()
                     .getContent()));

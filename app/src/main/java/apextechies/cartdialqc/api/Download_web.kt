@@ -13,6 +13,7 @@ import java.util.ArrayList
 class Download_web(private val context: Context, private val listener: OnTaskCompleted?) : AsyncTask<String, Void, String>() {
     private var response = ""
     private var isGet = true
+    private var api_token = ""
     private var data: ArrayList<NameValuePair>? = null
     fun setReqType(isGet: Boolean) {
         this.isGet = isGet
@@ -21,16 +22,19 @@ class Download_web(private val context: Context, private val listener: OnTaskCom
     fun setData(data: ArrayList<NameValuePair>) {
         this.data = data
     }
+    fun setApiToken(token: String) {
+        this.api_token = api_token
+    }
 
 
     override fun doInBackground(vararg params: String): String {
 
         for (url in params) {
             if (isGet) {
-                response = doGet(url)
+                response = doGet(url, api_token)
             }
             else{
-                response = doPost(url, this!!.data!!);
+                response = doPost(url, this!!.data!!, api_token);
             }
 
         }
@@ -56,10 +60,10 @@ class Download_web(private val context: Context, private val listener: OnTaskCom
 
     }
 
-    private fun doGet(url: String): String {
+    private fun doGet(url: String, api_token: String): String {
         try {
 
-            response = Utilz.executeHttpGet(url)
+            response = Utilz.executeHttpGet(url, api_token)
 
         } catch (e: Exception) {
             e.printStackTrace()
@@ -71,10 +75,10 @@ class Download_web(private val context: Context, private val listener: OnTaskCom
         return response
     }
 
-    private fun doPost(url: String, params: ArrayList<NameValuePair>): String {
+    private fun doPost(url: String, params: ArrayList<NameValuePair>, api_token: String): String {
         try {
 
-            response = Utilz.executeHttpPost(url, params)
+            response = Utilz.executeHttpPost(url, params, api_token)
 
         } catch (e: Exception) {
             e.printStackTrace()

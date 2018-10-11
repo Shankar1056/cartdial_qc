@@ -19,4 +19,5 @@
     <string name="ordersource">Order Source: </string>
     <string name="totalamount">Total Amount: </string>
     <string name="paymentmethod">Payment Mode: </string>
+    <string name="next">Next</string>
 </resources>

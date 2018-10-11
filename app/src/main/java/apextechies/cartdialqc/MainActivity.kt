@@ -21,6 +21,7 @@ import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import apextechies.cartdialqc.activity.DeviceFeatureOptionActivity
 import apextechies.cartdialqc.api.Download_web
 import apextechies.cartdialqc.api.OnTaskCompleted
 import apextechies.cartdialqc.api.Utilz
@@ -56,7 +57,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
         navigationView.setNavigationItemSelectedListener(this)
 
-        initWidgit();
+        initWidgit()
+        clickListener()
 
         call.setOnClickListener {
             if (!checkPermissions()) {
@@ -64,6 +66,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             } else {
                 makecall()
             }
+        }
+    }
+
+    private fun clickListener() {
+        nextTV.setOnClickListener {
+            startActivity(Intent(this, DeviceFeatureOptionActivity::class.java))
         }
     }
 
