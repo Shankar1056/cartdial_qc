@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <include
     android:id="@+id/tolbar"
@@ -11,7 +12,19 @@
         android:id="@+id/featurelistRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tolbar">
+        android:layout_below="@+id/tolbar"
+        android:layout_marginBottom="50dp">
 
     </android.support.v7.widget.RecyclerView>
-</android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/nextBTN"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/next"
+        android:textColor="@color/white"
+        android:fontFamily="@font/proxima_nova_semi_bold"
+        android:textSize="15sp"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

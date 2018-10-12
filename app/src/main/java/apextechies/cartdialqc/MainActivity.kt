@@ -21,6 +21,7 @@ import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import apextechies.cartdialqc.activity.DeviceFeatureOptionActivity
 import apextechies.cartdialqc.api.Download_web
 import apextechies.cartdialqc.api.OnTaskCompleted
@@ -71,7 +72,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun clickListener() {
         nextTV.setOnClickListener {
-            startActivity(Intent(this, DeviceFeatureOptionActivity::class.java))
+            if (input_orderId.text.toString().trim().equals("")){
+                Toast.makeText(this, "Enter Order ID First", Toast.LENGTH_SHORT).show()
+            }else {
+                startActivity(Intent(this, DeviceFeatureOptionActivity::class.java)
+                        .putExtra("orderid", input_orderId.text.toString()))
+            }
         }
     }
 

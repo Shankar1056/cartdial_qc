@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.AsyncTask
 import android.util.Log
 import android.widget.Toast
+import apextechies.cartdialqc.model.AddUpdateQCListModel
 
 import org.apache.http.NameValuePair
 
@@ -14,6 +15,7 @@ class Download_web(private val context: Context, private val listener: OnTaskCom
     private var response = ""
     private var isGet = true
     private var api_token = ""
+    private var addUpdateQcList = AddUpdateQCListModel()
     private var data: ArrayList<NameValuePair>? = null
     fun setReqType(isGet: Boolean) {
         this.isGet = isGet
@@ -22,6 +24,7 @@ class Download_web(private val context: Context, private val listener: OnTaskCom
     fun setData(data: ArrayList<NameValuePair>) {
         this.data = data
     }
+
     fun setApiToken(token: String) {
         this.api_token = api_token
     }
@@ -30,17 +33,19 @@ class Download_web(private val context: Context, private val listener: OnTaskCom
     override fun doInBackground(vararg params: String): String {
 
         for (url in params) {
-            if (isGet) {
-                response = doGet(url, api_token)
-            }
-            else{
-                response = doPost(url, this!!.data!!, api_token);
-            }
+
+                if (isGet) {
+                    response = doGet(url, api_token)
+                } else {
+                    response = doPost(url, this!!.data!!, api_token)
+                }
+
 
         }
 
         return response
     }
+
 
     override fun onPreExecute() {
 
@@ -88,6 +93,11 @@ class Download_web(private val context: Context, private val listener: OnTaskCom
         }
 
         return response
+    }
+
+    fun setQcData(addUpdateQcList: AddUpdateQCListModel) {
+        this.addUpdateQcList = addUpdateQcList
+
     }
 
 

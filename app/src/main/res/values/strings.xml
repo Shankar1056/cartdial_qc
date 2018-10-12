@@ -20,4 +20,7 @@
     <string name="totalamount">Total Amount: </string>
     <string name="paymentmethod">Payment Mode: </string>
     <string name="next">Next</string>
+    <string name="no">NO</string>
+    <string name="nc">NC</string>
+    <string name="yes">YES</string>
 </resources>

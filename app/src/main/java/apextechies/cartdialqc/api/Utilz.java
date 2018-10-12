@@ -15,18 +15,23 @@ import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.params.ConnManagerParams;
+import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,6 +39,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import apextechies.cartdialqc.model.AddUpdateQCListModel;
 
 
 public class Utilz {
@@ -86,6 +93,7 @@ public class Utilz {
             }
         }
     }
+
 
 
     public static String executeHttpGet(String url, String api_token) throws Exception {
@@ -195,6 +203,7 @@ public class Utilz {
     private static double rad2deg(double rad) {
         return (rad * 180.0 / Math.PI);
     }
+
     public static void showProgress(Context context, String message) {
         if (dialog != null && dialog.isShowing()) {
             return;
@@ -234,7 +243,6 @@ public class Utilz {
     }
 
 
-
     public static void toastDisplay(String Message, Context con) {
         Toast toast = Toast.makeText(con, Message, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
@@ -246,10 +254,6 @@ public class Utilz {
         InputMethodManager imm = (InputMethodManager) c.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(textfiled.getWindowToken(), 0);
     }
-
-
-
-
 
 
     public static void showDailog(Context c, String msg) {
@@ -274,8 +278,8 @@ public class Utilz {
     }
 
     public static String getCurrentTime(Context askQuestion) {
-        Date d=new Date();
-        SimpleDateFormat sdf=new SimpleDateFormat("hh:mm a");
+        Date d = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
         String currentDateTimeString = sdf.format(d);
         return currentDateTimeString;
     }
@@ -295,26 +299,25 @@ public class Utilz {
         String dayOfTheWeek = sdf.format(d);
         return dayOfTheWeek;
     }
+
     private static Calendar c;
     private static List<String> output;
 
-    public static List<String> getCalendar()
-    {
+    public static List<String> getCalendar() {
         c = Calendar.getInstance();
-        output =  new ArrayList<String>();
+        output = new ArrayList<String>();
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         String formattedDate = df.format(c.getTime());
 
         //Get current Day of week and Apply suitable offset to bring the new calendar
         //back to the appropriate Monday, i.e. this week or next
-        switch (c.get(Calendar.DAY_OF_WEEK))
-        {
+        switch (c.get(Calendar.DAY_OF_WEEK)) {
             case Calendar.MONDAY:
-                c.add(Calendar.DATE,-1);
+                c.add(Calendar.DATE, -1);
                 break;
 
             case Calendar.TUESDAY:
-                c.add(Calendar.DATE,-2);
+                c.add(Calendar.DATE, -2);
                 break;
 
             case Calendar.WEDNESDAY:
@@ -322,24 +325,23 @@ public class Utilz {
                 break;
 
             case Calendar.THURSDAY:
-                c.add(Calendar.DATE,-4);
+                c.add(Calendar.DATE, -4);
                 break;
 
             case Calendar.FRIDAY:
-                c.add(Calendar.DATE,-5);
+                c.add(Calendar.DATE, -5);
                 break;
 
             case Calendar.SATURDAY:
-                c.add(Calendar.DATE,-6);
+                c.add(Calendar.DATE, -6);
                 break;
         }
 
         //Add the Monday to the output
-       // output.add(c.getTime().toString());
-        for (int x = 1; x <=6; x++)
-        {
+        // output.add(c.getTime().toString());
+        for (int x = 1; x <= 6; x++) {
             //Add the remaining days to the output
-            c.add(Calendar.DATE,1);
+            c.add(Calendar.DATE, 1);
             output.add(df.format(c.getTime()));
         }
         return output;
