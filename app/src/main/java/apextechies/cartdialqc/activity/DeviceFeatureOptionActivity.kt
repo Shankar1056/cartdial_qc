@@ -55,7 +55,9 @@ class DeviceFeatureOptionActivity : AppCompatActivity() {
 
                 }
 
-                override fun onFailure(error: String?) {}
+                override fun onFailure(error: String?) {
+                    startActivity(Intent(this@DeviceFeatureOptionActivity, ImageActivity::class.java))
+                }
 
                 override fun onOtherResult(errorNumber: Int) {}
             })
