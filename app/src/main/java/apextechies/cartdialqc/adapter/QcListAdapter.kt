@@ -52,6 +52,8 @@ class QcListAdapter( private val context: Context, private val myCartModels: Arr
                             que.selectedText = radioButton.text as String
                         }catch (e: NullPointerException){
 
+                        }catch (e: TypeCastException){
+
                         }
 
                     }

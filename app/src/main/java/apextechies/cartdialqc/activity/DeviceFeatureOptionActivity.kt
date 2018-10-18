@@ -1,5 +1,6 @@
 package apextechies.cartdialqc.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -25,7 +26,7 @@ import org.json.JSONObject
 class DeviceFeatureOptionActivity : AppCompatActivity() {
     val list = ArrayList<DeviceQuestionModel>()
     var sendList = ArrayList<DeviceQuestionModel>()
-    var retrofitDataProvider: RetrofitDataProvider?= null
+    var retrofitDataProvider: RetrofitDataProvider? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,13 +51,13 @@ class DeviceFeatureOptionActivity : AppCompatActivity() {
             retrofitDataProvider!!.addUpateQclist(ClsGeneral.getPreferences(this, ConstantValue.APITOKEN), qcList, object : DownlodableCallback<CommonResponce> {
                 override fun onSuccess(result: CommonResponce?) {
 
-
+                    startActivity(Intent(this@DeviceFeatureOptionActivity, ImageActivity::class.java))
 
                 }
 
-                override fun onFailure(error: String?) { }
+                override fun onFailure(error: String?) {}
 
-                override fun onOtherResult(errorNumber: Int) { }
+                override fun onOtherResult(errorNumber: Int) {}
             })
 
         }
@@ -68,12 +69,13 @@ class DeviceFeatureOptionActivity : AppCompatActivity() {
         model.operation = "insert"
         model.order_id = intent.getStringExtra("orderid")
         model.user_id = ClsGeneral.getPreferences(this, ConstantValue.USERID)
-        for (i in 0 until list.size){
+        for (i in 0 until list.size) {
             qclist.add(QcListModel(list.get(i).function_name, list[i].selectedText))
         }
-        model.data=qclist
+        model.data = qclist
         return model
     }
+
     private fun getdata() {
         var web = Download_web(this, object : OnTaskCompleted {
             override fun onTaskCompleted(response: String) {
