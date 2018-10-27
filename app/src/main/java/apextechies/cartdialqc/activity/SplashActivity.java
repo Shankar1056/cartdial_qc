@@ -10,7 +10,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import apextechies.cartdialqc.MainActivity;
 import apextechies.cartdialqc.R;
 import apextechies.cartdialqc.api.Download_web;
 import apextechies.cartdialqc.api.OnTaskCompleted;

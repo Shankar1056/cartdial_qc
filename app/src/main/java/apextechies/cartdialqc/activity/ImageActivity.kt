@@ -3,23 +3,31 @@ package apextechies.cartdialqc.activity
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
-import apextechies.cartdialqc.MainActivity
 import apextechies.cartdialqc.adapter.ImagesAdapter
 import java.io.File
 import java.util.ArrayList
 import apextechies.cartdialqc.R
+import apextechies.cartdialqc.R.id.recycler_view
+import apextechies.cartdialqc.api.Download_web
+import apextechies.cartdialqc.api.OnTaskCompleted
+import apextechies.cartdialqc.api.Utilz
+import apextechies.cartdialqc.api.WebServices
+import apextechies.cartdialqc.common.ConstantValue
+import apextechies.cartdialqc.common.MultipartUtility
 import apextechies.cartdialqc.easyphotopicker.DefaultCallback
 import apextechies.cartdialqc.easyphotopicker.EasyImage
 import kotlinx.android.synthetic.main.activity_image.*
 import pl.tajchert.nammu.Nammu
 import pl.tajchert.nammu.PermissionCallback
+import android.os.AsyncTask.execute
+
+
 
 class ImageActivity: AppCompatActivity() {
 
@@ -75,8 +83,21 @@ class ImageActivity: AppCompatActivity() {
 
         camera_button.setOnClickListener(View.OnClickListener { EasyImage.openCameraForImage(this@ImageActivity, 0) })
         submit_button.setOnClickListener {
-            startActivity(Intent(this@ImageActivity, MainActivity::class.java))
-            finish()
+            /*startActivity(Intent(this@ImageActivity, MainActivity::class.java))
+            finish()*/
+
+           var web =  Download_web(this, object : OnTaskCompleted {
+               override fun onTaskCompleted(response: String) {
+
+                   if (response.length>0){
+
+                   }
+               }
+           })
+            web.setReqType(true)
+            web.setImageUrl(photos[0], "img")
+            web.execute(WebServices.UPLOADIMAGE)
+
         }
 
     }
@@ -133,3 +154,4 @@ class ImageActivity: AppCompatActivity() {
         super.onDestroy()
     }
 }
+

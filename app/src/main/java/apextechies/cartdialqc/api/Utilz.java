@@ -5,7 +5,10 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -13,25 +16,27 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.bikomobile.multipart.Multipart;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.params.ConnManagerParams;
-import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,7 +45,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import apextechies.cartdialqc.model.AddUpdateQCListModel;
+import apextechies.cartdialqc.common.MultipartUtility;
 
 
 public class Utilz {
@@ -58,6 +63,7 @@ public class Utilz {
         }
         return mHttpClient;
     }
+
 
     public static String executeHttpPost(String url, ArrayList<NameValuePair> postParameters, String api_token) throws Exception {
         BufferedReader in = null;
@@ -127,6 +133,39 @@ public class Utilz {
                 }
             }
         }
+    }
+    public static String executeHttpImageGet(File url) throws Exception {
+        try {
+
+            String charset = "UTF-8";
+            File uploadFile1 = url;
+            String requestURL = WebServices.UPLOADIMAGE;
+
+            MultipartUtility multipart = new MultipartUtility(requestURL, charset);
+
+//            multipart.addHeaderField("User-Agent", "CodeJava");
+//            multipart.addHeaderField("Test-Header", "Header-Value");
+
+            multipart.addFormField("friend_id", "Cool Pictures");
+            multipart.addFormField("userid", "Java,upload,Spring");
+
+            multipart.addFilePart("upload", uploadFile1);
+
+            List<String> response = multipart.finish();
+
+            Log.v("rht", "SERVER REPLIED:");
+
+            for (String line : response) {
+                Log.v("rht", "Line : " + line);
+
+            }
+            return response.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return "";
     }
 
     public static boolean isInternetConnected(Context c) {
@@ -347,5 +386,16 @@ public class Utilz {
         return output;
     }
 
+    @NotNull
+    public static Object getImagePath(Context context, Uri uri) {
+
+            String[] projection = {MediaStore.MediaColumns.DATA};
+            Cursor cursor = context.getContentResolver().query(uri, projection, null, null, null);
+            int column_index = cursor
+                    .getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+            cursor.moveToFirst();
+        return  cursor.getString(column_index);
+
+    }
 }
 

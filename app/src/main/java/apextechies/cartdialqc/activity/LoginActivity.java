@@ -29,7 +29,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import apextechies.cartdialqc.MainActivity;
 import apextechies.cartdialqc.R;
 import apextechies.cartdialqc.api.Download_web;
 import apextechies.cartdialqc.api.OnTaskCompleted;
