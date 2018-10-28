@@ -82,6 +82,9 @@ class NewOrderDetails: AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         }
 
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
     }
 
     private fun updateStatusInDezentsDB() {
